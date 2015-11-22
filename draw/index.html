@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-  <title>Whiteboard</title>
+  <title>Draw</title>
   <style type="text/css">
     body {
       margin: 0;
@@ -184,7 +184,7 @@
 
     // User input:
 
-    userRef.removeOnDisconnect();
+    userRef.onDisconnect().remove();
 
     $topCanvas.on('mousedown', function(e) {
       newLayer = {

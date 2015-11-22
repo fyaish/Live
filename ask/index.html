@@ -1,0 +1,50 @@
+
+<html>
+<head>
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+  <body ng-controller="MainCtrl" class="container"  ng-app="aftBasic">
+
+  <h1>Ask</h1>
+
+
+  <form id="question-form" class="form-inline" role="form" ng-submit='ask()'>
+    <div class="form-group">
+      <input class="form-control" placeholder="Ask a question" ng-model="question.text">
+
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Vote for the questions you want to hear answered</div>
+  <dl id="questions" class="dl-horizontal">
+    <div class="question"
+         ng-animate="'animate'"
+         ng-class="{obscure: question.voteTotal < -5, bold: question.voteTotal > 5, voted: question.voted}"
+         ng-repeat="question in questions | orderBy:'-voteTotal'">
+      <dt>
+        <div class="arrows">
+          <span class="arrow" ng-click="question.vote(1)">&#9650</span>
+          <span class="arrow" ng-click="question.vote(-1)">&#9660</span>
+        </div>
+        <div class="votecount">{{question.voteTotal}}</div>
+      </dt>
+      <dd>{{question.text}}</dd>
+    </div>
+
+  </dl>
+</div>
+
+  <script type="text/javascript" src="https://code.angularjs.org/1.2.6/angular.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-animate.js"></script>
+  <script type="text/javascript" src='https://cdn.firebase.com/js/client/1.0.11/firebase.js'></script>
+  <script type="text/javascript" src="firebase-resource.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+  <script type="text/javascript" src="_firebase.js"></script>
+  </body>
+</html>
